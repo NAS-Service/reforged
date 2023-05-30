@@ -45,7 +45,7 @@ Encore.setPublicPath('/assets')
 | entrypoints.
 |
 */
-Encore.addEntry('app', './resources/js/app.js')
+Encore.addEntry('app', './resources/ts/app.ts')
 
 /*
 |--------------------------------------------------------------------------
@@ -159,6 +159,7 @@ Encore.configureDevServerOptions((options) => {
 // Encore.enableSassLoader()
 // Encore.enableLessLoader()
 // Encore.enableStylusLoader()
+Encore.enableTypeScriptLoader()
 
 /*
 |--------------------------------------------------------------------------
