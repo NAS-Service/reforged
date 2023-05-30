@@ -10,11 +10,13 @@
     "App": "app",
     "Config": "config",
     "Database": "database",
-    "Contracts": "contracts"
+    "Contracts": "contracts",
+    "Services": "services"
   },
   "preloads": ["./start/routes", "./start/kernel"],
   "providers": [
-    "./providers/AppProvider",
+    "./providers/app_provider",
+    "./providers/unpoly_provider",
     "@adonisjs/core",
     "@adonisjs/session",
     "@adonisjs/view",
