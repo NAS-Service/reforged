@@ -1,7 +1,7 @@
 @layout('web::layouts/authentication')
 
 @section('body')
-  @form.container({ method: 'POST', action: route('login') })
+  @form.container({ method: 'POST', action: route('signup') })
     <div class="flex gap-5">
       @!form.input({
         label: 'Prénom',
