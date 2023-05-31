@@ -1,6 +1,4 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import SocialAuth from 'apps/web/services/social_auth'
-import User from 'Domains/users/models/User'
 
 export default class AuthenticationController {
   public async showSignIn({ view }: HttpContextContract) {
@@ -11,19 +9,15 @@ export default class AuthenticationController {
     return view.render('web::views/authentication/store')
   }
 
-  public async redirect({ ally, params }: HttpContextContract) {
-    return await ally.use(params.provider).redirect()
-  }
+  public async login({ request, response, auth, view }: HttpContextContract) {
+    const { email, password } = request.only(['email', 'password'])
+    const user = await auth.use('web').verifyCredentials(email, password)
 
-  public async callback({ ally, auth, params, response }: HttpContextContract) {
-    const socialUser = await ally.use(params.provider).user()
+    if (user.isTwoFactorEnabled) {
+      return view.render('')
+    }
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    await new SocialAuth(socialUser, params.provider).onFindOrCreate(async (user: User) => {
-      await auth.login(user)
-
-      response.redirect().toRoute('aa')
-    })
+    await auth.login(user)
+    response.redirect().toRoute('aa')
   }
 }

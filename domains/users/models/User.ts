@@ -48,6 +48,9 @@ export default class User extends BaseModel {
   })
   public twoFactorRecoveryCodes?: string[]
 
+  @column()
+  public isTwoFactorEnabled: boolean
+
   @beforeSave()
   public static async hashPassword(user: User) {
     if (user.$dirty.password) {
