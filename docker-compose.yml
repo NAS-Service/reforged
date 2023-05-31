@@ -1,0 +1,14 @@
+version: '3'
+services:
+  database:
+    image: postgres:14
+    volumes:
+      - psql-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: reforged
+      POSTGRES_PASSWORD: reforged
+      POSTGRES_DB: reforged
+    ports:
+      - "5433:5432"
+volumes:
+  psql-data:
