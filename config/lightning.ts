@@ -6,6 +6,9 @@ const lightningConfig: LightningConfigContract = {
     manager: {
       middleware: [],
     },
+    web: {
+      middleware: [],
+    },
   },
 }
 
