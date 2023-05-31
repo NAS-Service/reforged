@@ -61,6 +61,7 @@ const allyConfig: AllyConfig = {
     clientId: Env.get('LINKEDIN_CLIENT_ID'),
     clientSecret: Env.get('LINKEDIN_CLIENT_SECRET'),
     callbackUrl: Env.get('LINKEDIN_CALLBACK_URL'),
+    scopes: ['r_emailaddress', 'r_liteprofile'],
   },
   /*
   |--------------------------------------------------------------------------
