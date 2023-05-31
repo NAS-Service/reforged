@@ -1,7 +1,8 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import { column, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
+import { column, beforeSave, BaseModel, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import Encryption from '@ioc:Adonis/Core/Encryption'
+import Token from 'Domains/users/models/token'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -50,6 +51,19 @@ export default class User extends BaseModel {
 
   @column()
   public isTwoFactorEnabled: boolean
+
+  @hasMany(() => Token)
+  public tokens: HasMany<typeof Token>
+
+  @hasMany(() => Token, {
+    onQuery: (query) => query.where('type', 'PASSWORD_RESET'),
+  })
+  public passwordResetTokens: HasMany<typeof Token>
+
+  @hasMany(() => Token, {
+    onQuery: (query) => query.where('type', 'VERIFY_EMAIL'),
+  })
+  public verifyEmailTokens: HasMany<typeof Token>
 
   @beforeSave()
   public static async hashPassword(user: User) {

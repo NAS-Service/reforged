@@ -1,5 +1,5 @@
 import type { SocialProviders } from '@ioc:Adonis/Addons/Ally'
-import User from '../../../domains/users/models/User'
+import User from 'Domains/users/models/User'
 
 export default class SocialAuth implements Promise<void> {
   private findOrCreateHandler: any
@@ -16,8 +16,8 @@ export default class SocialAuth implements Promise<void> {
     await this.findOrCreateHandler(user)
   }
 
-  private updateOrCreate() {
-    return User.updateOrCreate(
+  private async updateOrCreate() {
+    return await User.updateOrCreate(
       { oauthProviderId: this.socialUser.id, oauthProviderName: this.provider },
       {
         username:

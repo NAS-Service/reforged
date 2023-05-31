@@ -81,7 +81,8 @@
     "rules": {
       "prettier/prettier": [
         "error"
-      ]
+      ],
+      "indent": ["error", 2]
     }
   },
   "eslintIgnore": [
