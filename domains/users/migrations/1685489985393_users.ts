@@ -15,6 +15,8 @@ export default class UsersSchema extends BaseSchema {
       table.string('oauth_provider_name').notNullable()
       table.string('password').nullable()
       table.string('rememberMeToken').nullable()
+      table.text('two_factor_secret').nullable()
+      table.text('two_factor_recovery_codes').nullable()
 
       table.unique(['oauth_provider_id', 'oauth_provider_name'])
     })

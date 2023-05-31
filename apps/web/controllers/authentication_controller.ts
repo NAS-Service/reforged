@@ -3,8 +3,12 @@ import SocialAuth from 'apps/web/services/social_auth'
 import User from 'Domains/users/models/User'
 
 export default class AuthenticationController {
-  public async showLogin({ view }: HttpContextContract) {
+  public async showSignIn({ view }: HttpContextContract) {
     return view.render('manager::views/welcome')
+  }
+
+  public async showSignUp({ view }: HttpContextContract) {
+    return view.render('web::views/authentication/store')
   }
 
   public async redirect({ ally, params }: HttpContextContract) {
