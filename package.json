@@ -65,7 +65,8 @@
   "eslintConfig": {
     "extends": [
       "plugin:adonis/typescriptApp",
-      "prettier"
+      "prettier",
+      "@nas-service/eslint-config"
     ],
     "plugins": [
       "prettier"

@@ -1,6 +1,7 @@
 import 'unpoly'
 import 'unpoly/unpoly.css'
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 const unpoly = up as any
 

@@ -53,7 +53,11 @@ export default class Lightning implements LightningContract {
     )
   }
 
-  private applyRouteParameter(route: RouteGroupContract, application: LightningApplicationContract, attribute: keyof LightningApplicationContract) {
+  private applyRouteParameter(
+    route: RouteGroupContract,
+    application: LightningApplicationContract,
+    attribute: keyof LightningApplicationContract
+  ) {
     if (application[attribute]) {
       route[attribute](application[attribute] as any)
     }

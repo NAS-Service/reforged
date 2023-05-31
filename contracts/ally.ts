@@ -6,15 +6,15 @@
  */
 
 declare module '@ioc:Adonis/Addons/Ally' {
-	interface SocialProviders {
+  interface SocialProviders {
     google: {
       config: GoogleDriverConfig
       implementation: GoogleDriverContract
     }
-		twitter: {
-			config: TwitterDriverConfig
-			implementation: TwitterDriverContract
-		}
+    twitter: {
+      config: TwitterDriverConfig
+      implementation: TwitterDriverContract
+    }
     discord: {
       config: DiscordDriverConfig
       implementation: DiscordDriverContract
@@ -27,5 +27,5 @@ declare module '@ioc:Adonis/Addons/Ally' {
       config: FacebookDriverConfig
       implementation: FacebookDriverContract
     }
-	}
+  }
 }
