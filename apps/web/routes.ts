@@ -6,6 +6,9 @@ export default () => {
     Route.get('/signup', 'auth/authentication_controller.showSignUp').as('showSignup')
     Route.post('/store', 'auth/authentication_controller.login').as('login')
   }).prefix('/authentication')
-  Route.get('/oauth/:provider/redirect', 'auth/social_controller.redirect').as('oauth.redirect')
-  Route.get('/oauth/:provider/callback', 'auth/social_controller.callback')
+
+  Route.group(() => {
+    Route.get('/:provider/redirect', 'auth/social_controller.redirect').as('oauth.redirect')
+    Route.get('/:provider/callback', 'auth/social_controller.callback')
+  }).prefix('/oauth')
 }

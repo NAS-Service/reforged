@@ -10,7 +10,7 @@ export default class UserController {
   public async store({ request, response }: HttpContextContract) {
     const data = await request.validate(UserValidator)
 
-    const user = await User.create({
+    await User.create({
       username: data.firstname,
       email: data.email,
       oauthProviderName: 'web',

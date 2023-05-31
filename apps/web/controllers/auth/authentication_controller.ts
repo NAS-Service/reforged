@@ -5,10 +5,6 @@ export default class AuthenticationController {
     return view.render('web::views/authentication/login')
   }
 
-  public async showSignUp({ view }: HttpContextContract) {
-    return view.render('web::views/authentication/store')
-  }
-
   public async login({ request, response, session, auth, view }: HttpContextContract) {
     console.log('test')
     const { email, password } = request.only(['email', 'password'])
