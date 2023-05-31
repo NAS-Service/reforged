@@ -1,4 +1,5 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import AuthenticationValidator from 'apps/web/validators/auth/authentication_validator'
 
 export default class AuthenticationController {
   public async showSignIn({ view }: HttpContextContract) {
@@ -6,8 +7,7 @@ export default class AuthenticationController {
   }
 
   public async login({ request, response, session, auth, view }: HttpContextContract) {
-    console.log('test')
-    const { email, password } = request.only(['email', 'password'])
+    const { email, password } = await request.validate(AuthenticationValidator)
     const user = await auth.use('web').verifyCredentials(email, password)
 
     if (user.isTwoFactorEnabled) {
