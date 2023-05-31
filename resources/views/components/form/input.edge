@@ -1,0 +1,31 @@
+<div class="flex flex-col max-w-md pb-5">
+  <label>
+    {{ label }}
+    @if(required)
+      <span class="text-sm text-red-500">*</span>
+    @end
+  </label>
+
+  <input
+    id="{{ name }}"
+    name="{{ name }}"
+    type="{{ type ? type : 'text' }}"
+    class="border border-gray-200 rounded-md px-3 py-1"
+
+    @if(required)
+      required
+    @end
+
+    @if(placeholder)
+      placeholder="{{ placeholder }}"
+    @endif
+
+    value="{{ flashMessages.get(name, '') || value || '' }}"
+  />
+
+  @if(flashMessages.has(`errors.${name}`))
+    <div class="bg-red-200 rounded-md mt-2 p-3 max-w-xl">
+      <p class="text-red-600 text-sm">{{ flashMessages.get(`errors.${name}`) }}</p>
+    </div>
+  @end
+</div>

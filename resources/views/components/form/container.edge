@@ -1,0 +1,4 @@
+<form action="{{ action }}" method="{{ method }}" class="{{ classNames }}" enctype="multipart/form-data">
+  {{ csrfField() }}
+  {{{ await $slots.main() }}}
+</form>

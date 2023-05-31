@@ -1,0 +1,9 @@
+@layout('web::layouts/authentication')
+
+@section('body')
+  @form.container({ method: 'POST', action: route('login') })
+    <input type="email" name="email" placeholder="Email" />
+    <input type="password" name="password" placeholder="Mot de passe" />
+    <button type="submit">Connexion</button>
+  @end
+@end
