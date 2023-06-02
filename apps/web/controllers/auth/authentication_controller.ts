@@ -1,23 +1,34 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import AuthenticationValidator from 'apps/web/validators/auth/authentication_validator'
+import User from 'Domains/users/models/User'
 
 export default class AuthenticationController {
-  public async showSignIn({ view }: HttpContextContract) {
+  public async index({ view }: HttpContextContract) {
     return view.render('web::views/authentication/login')
   }
 
-  public async login({ request, response, session, auth, view }: HttpContextContract) {
+  public async login({ request, response, auth, session }: HttpContextContract) {
     const { email, password } = await request.validate(AuthenticationValidator)
-    const user = await auth.use('web').verifyCredentials(email, password)
+    const verifyUser = await User.findBy('email', email)
 
-    if (user.isTwoFactorEnabled) {
-      session.put('login.id', user.id)
-      return view.render('')
+    if (!verifyUser) {
+      session.flash('message', 'The user does not exist')
+      return response.redirect().back()
     }
 
-    session.forget('login.id')
-    session.regenerate()
+    if (verifyUser.oauthProviderName !== 'web') {
+      session.flash('message', 'troll')
+      return response.redirect().back()
+    }
+
+    const user = await auth.use('web').verifyCredentials(email, password)
+
     await auth.login(user)
     response.redirect().toRoute('aa')
+  }
+
+  public async logout({ response, auth }: HttpContextContract) {
+    await auth.use('web').logout()
+    return response.redirect().toRoute('showLogin')
   }
 }
