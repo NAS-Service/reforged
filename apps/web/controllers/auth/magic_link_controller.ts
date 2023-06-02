@@ -38,7 +38,7 @@ export default class MagicLinkController {
       await auth.login(user!)
 
       session.flash('message', 'Connected')
-      return response.redirect().toRoute('aa')
+      return response.redirect().toRoute('home')
     }
 
     session.flash('message', 'Signature is missing or URL was tampered.')
