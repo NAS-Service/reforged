@@ -31,6 +31,9 @@ export default () => {
       Route.get('/reset/:token', 'auth/password_reset_controller.reset').as('password.reset')
       Route.post('/store', 'auth/password_reset_controller.store').as('password.store')
     }).prefix('/password')
+
+    // 2FA
+    Route.get('/2fa', 'auth/two_factor_controller.index')
   }).prefix('/authentication')
   Route.get('/oauth/:provider/callback', 'auth/social_controller.callback')
 }
