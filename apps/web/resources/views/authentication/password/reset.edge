@@ -1,0 +1,17 @@
+@layout('web::layouts/authentication')
+
+@section('body')
+<div>
+  <h1>Reset your password</h1>
+
+  @if (isValid)
+    @form.container({ method: 'POST', action: route('password.store') })
+      @!form.input({ label: 'Token', type: 'hidden', name: 'token', value: token })
+      @!form.input({ label: 'Password', type: 'password', name: 'password', value: password, placeholder: 'Enter your new password' })
+      <button type="submit">Reset password</button>
+    @end
+  @else
+    <p>Your token is invalid or expired. <a href="{{ route('password.forgot') }}">Please try again</a>.</p>
+  @end
+</div>
+@end
