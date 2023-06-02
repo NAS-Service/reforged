@@ -18,6 +18,7 @@ export default class UsersSchema extends BaseSchema {
       table.text('two_factor_secret').nullable()
       table.text('two_factor_recovery_codes').nullable()
       table.boolean('is_two_factor_enabled').notNullable().defaultTo(false)
+      table.boolean('has_email_verified').notNullable().defaultTo(false)
       table.unique(['oauth_provider_id', 'oauth_provider_name'])
     })
   }

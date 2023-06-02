@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import { column, beforeSave, BaseModel, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, beforeSave, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import Encryption from '@ioc:Adonis/Core/Encryption'
 import Token from 'Domains/users/models/token'
 
@@ -34,6 +34,9 @@ export default class User extends BaseModel {
 
   @column({ serializeAs: null })
   public oauthProviderName: string
+
+  @column()
+  public hasEmailVerified: boolean
 
   @column({
     serializeAs: null,

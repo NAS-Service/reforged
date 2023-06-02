@@ -24,7 +24,7 @@ export default class AuthenticationController {
     const user = await auth.use('web').verifyCredentials(email, password)
 
     await auth.login(user)
-    response.redirect().toRoute('aa')
+    response.redirect().toRoute('home')
   }
 
   public async logout({ response, auth }: HttpContextContract) {
