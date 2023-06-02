@@ -1,0 +1,8 @@
+@layout('web::layouts/authentication')
+
+@section('body')
+  @form.container({ method: 'POST', action: route('magic_link') })
+    <input type="email" name="email" placeholder="Email" />
+    <button type="submit">Send link</button>
+  @end
+@end

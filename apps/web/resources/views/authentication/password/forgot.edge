@@ -1,0 +1,13 @@
+@layout('web::layouts/authentication')
+
+@section('body')
+<div>
+  <h1>Reset your password</h1>
+  <p>Enter your email below and we'll send you a password reset link</p>
+
+  @form.container({ method: 'POST', action: route('password.send') })
+    <input type="email" name="email" placeholder="Enter your email" />
+    <button type="submit">Reset password</button>
+  @end
+</div>
+@end

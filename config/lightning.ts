@@ -3,7 +3,12 @@ import { LightningConfigContract } from 'Services/lightning/contracts/lightning_
 const lightningConfig: LightningConfigContract = {
   domains: ['users', 'posts'],
   applications: {
-    manager: {},
+    manager: {
+      middleware: [],
+    },
+    web: {
+      middleware: [],
+    },
   },
 }
 
