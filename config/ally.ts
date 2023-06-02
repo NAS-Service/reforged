@@ -18,39 +18,50 @@ import { AllyConfig } from '@ioc:Adonis/Addons/Ally'
 |
 */
 const allyConfig: AllyConfig = {
-  /*
+	/*
+	|--------------------------------------------------------------------------
+	| Github driver
+	|--------------------------------------------------------------------------
+	*/
+	github: {
+		driver: 'github',
+		clientId: Env.get('GITHUB_CLIENT_ID'),
+		clientSecret: Env.get('GITHUB_CLIENT_SECRET'),
+		callbackUrl: Env.get('GITHUB_CALLBACK_URL'),
+	},
+	/*
 	|--------------------------------------------------------------------------
 	| Google driver
 	|--------------------------------------------------------------------------
 	*/
-  google: {
-    driver: 'google',
-    clientId: Env.get('GOOGLE_CLIENT_ID'),
-    clientSecret: Env.get('GOOGLE_CLIENT_SECRET'),
-    callbackUrl: Env.get('GOOGLE_CALLBACK_URL'),
-  },
-  /*
+	google: {
+		driver: 'google',
+		clientId: Env.get('GOOGLE_CLIENT_ID'),
+		clientSecret: Env.get('GOOGLE_CLIENT_SECRET'),
+		callbackUrl: Env.get('GOOGLE_CALLBACK_URL'),
+	},
+	/*
 	|--------------------------------------------------------------------------
 	| Twitter driver
 	|--------------------------------------------------------------------------
 	*/
-  twitter: {
-    driver: 'twitter',
-    clientId: Env.get('TWITTER_CLIENT_ID'),
-    clientSecret: Env.get('TWITTER_CLIENT_SECRET'),
-    callbackUrl: Env.get('TWITTER_CALLBACK_URL'),
-  },
-  /*
+	twitter: {
+		driver: 'twitter',
+		clientId: Env.get('TWITTER_CLIENT_ID'),
+		clientSecret: Env.get('TWITTER_CLIENT_SECRET'),
+		callbackUrl: Env.get('TWITTER_CALLBACK_URL'),
+	},
+	/*
 	|--------------------------------------------------------------------------
 	| Discord driver
 	|--------------------------------------------------------------------------
 	*/
-  discord: {
-    driver: 'discord',
-    clientId: Env.get('DISCORD_CLIENT_ID'),
-    clientSecret: Env.get('DISCORD_CLIENT_SECRET'),
-    callbackUrl: Env.get('DISCORD_CALLBACK_URL'),
-  },
+	discord: {
+		driver: 'discord',
+		clientId: Env.get('DISCORD_CLIENT_ID'),
+		clientSecret: Env.get('DISCORD_CLIENT_SECRET'),
+		callbackUrl: Env.get('DISCORD_CALLBACK_URL'),
+	},
   /*
   |--------------------------------------------------------------------------
   | LinkedIn driver
@@ -61,7 +72,6 @@ const allyConfig: AllyConfig = {
     clientId: Env.get('LINKEDIN_CLIENT_ID'),
     clientSecret: Env.get('LINKEDIN_CLIENT_SECRET'),
     callbackUrl: Env.get('LINKEDIN_CALLBACK_URL'),
-    scopes: ['r_emailaddress', 'r_liteprofile'],
   },
   /*
   |--------------------------------------------------------------------------
@@ -73,6 +83,7 @@ const allyConfig: AllyConfig = {
     clientId: Env.get('FACEBOOK_CLIENT_ID'),
     clientSecret: Env.get('FACEBOOK_CLIENT_SECRET'),
     callbackUrl: Env.get('FACEBOOK_CALLBACK_URL'),
+	scopes: ['user', 'gist']
   },
 }
 
