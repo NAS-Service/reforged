@@ -1,5 +1,17 @@
 {
   "commands": {
+    "apps": {
+      "settings": {
+        "loadApp": false,
+        "stayAlive": false
+      },
+      "commandPath": "./commands/Apps",
+      "commandName": "apps",
+      "description": "",
+      "args": [],
+      "aliases": [],
+      "flags": []
+    },
     "dump:rcfile": {
       "settings": {},
       "commandPath": "@adonisjs/core/build/commands/DumpRc",

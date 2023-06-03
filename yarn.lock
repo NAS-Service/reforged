@@ -2271,13 +2271,6 @@
   resolved "https://registry.npmjs.org/@types/normalize-package-data/-/normalize-package-data-2.4.1.tgz"
   integrity sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==
 
-"@types/notp@^2.0.0":
-  version "2.0.2"
-  resolved "https://registry.npmjs.org/@types/notp/-/notp-2.0.2.tgz"
-  integrity sha512-JUcVYN9Tmw0AjoAfvjslS4hbv39fPBbZdftBK3b50g5z/DmhLsu6cd0UOEBiQuMwy2FirshF2Gk9gAvfWjshMw==
-  dependencies:
-    "@types/node" "*"
-
 "@types/pino-pretty@*":
   version "5.0.0"
   resolved "https://registry.npmjs.org/@types/pino-pretty/-/pino-pretty-5.0.0.tgz"
@@ -2306,13 +2299,6 @@
   version "2.0.0"
   resolved "https://registry.npmjs.org/@types/proxy-addr/-/proxy-addr-2.0.0.tgz"
   integrity sha512-JEm0kSrO3CjbFSLpYeYhCscS0vpW1mIWedhWuurJnYbMzY1vcm9fzJ6TL6SWq3m/m3g4KUV5JBT69mQSwUHZHg==
-  dependencies:
-    "@types/node" "*"
-
-"@types/qrcode@^1.5.0":
-  version "1.5.0"
-  resolved "https://registry.npmjs.org/@types/qrcode/-/qrcode-1.5.0.tgz"
-  integrity sha512-x5ilHXRxUPIMfjtM+1vf/GPTRWZ81nqscursm5gMznJeK9M0YnZ1c3bEvRLQ0zSSgedLx1J6MGL231ObQGGhaA==
   dependencies:
     "@types/node" "*"
 
@@ -3115,11 +3101,6 @@ balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
-
-base32.js@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/base32.js/-/base32.js-0.0.1.tgz#d045736a57b1f6c139f0c7df42518a84e91bb2ba"
-  integrity sha512-EGHIRiegFa62/SsA1J+Xs2tIzludPdzM064N9wjbiEgHnGnJ1V0WEpA4pEwCYT5nDvZk3ubf0shqaCS7k6xeUQ==
 
 base64-js@^1.3.1:
   version "1.5.1"
@@ -6908,16 +6889,6 @@ no-case@^3.0.4:
     lower-case "^2.0.2"
     tslib "^2.0.3"
 
-node-2fa@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.npmjs.org/node-2fa/-/node-2fa-2.0.3.tgz"
-  integrity sha512-PQldrOhjuoZyoydMvMSctllPN1ZPZ1/NwkEcgYwY9faVqE/OymxR+3awPpbWZxm6acLKqvmNqQmdqTsqYyflFw==
-  dependencies:
-    "@types/notp" "^2.0.0"
-    notp "^2.0.3"
-    thirty-two "1.0.2"
-    tslib "^2.1.0"
-
 node-emoji@^1.11.0:
   version "1.11.0"
   resolved "https://registry.npmjs.org/node-emoji/-/node-emoji-1.11.0.tgz"
@@ -6988,7 +6959,7 @@ normalize-url@^6.0.1, normalize-url@^6.1.0:
 
 notp@^2.0.3:
   version "2.0.3"
-  resolved "https://registry.npmjs.org/notp/-/notp-2.0.3.tgz"
+  resolved "https://registry.yarnpkg.com/notp/-/notp-2.0.3.tgz#a9fd11e25cfe1ccb39fc6689544ee4c10ef9a577"
   integrity sha512-oBig/2uqkjQ5AkBuw4QJYwkEWa/q+zHxI5/I5z6IeP2NT0alpJFsP/trrfCC+9xOAgQSZXssNi962kp5KBmypQ==
 
 npm-run-path@^4.0.1:
@@ -8816,13 +8787,6 @@ spdy@^4.0.2:
     select-hose "^2.0.0"
     spdy-transport "^3.0.0"
 
-speakeasy@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/speakeasy/-/speakeasy-2.0.0.tgz#85c91a071b09a5cb8642590d983566165f57613a"
-  integrity sha512-lW2A2s5LKi8rwu77ewisuUOtlCydF/hmQSOJjpTqTj1gZLkNgTaYnyvfxy2WBr4T/h+9c4g8HIITfj83OkFQFw==
-  dependencies:
-    base32.js "0.0.1"
-
 split-lines@^2.0.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/split-lines/-/split-lines-2.1.0.tgz"
@@ -9169,9 +9133,9 @@ thenify-all@^1.0.0:
   dependencies:
     any-promise "^1.0.0"
 
-thirty-two@1.0.2:
+thirty-two@^1.0.2:
   version "1.0.2"
-  resolved "https://registry.npmjs.org/thirty-two/-/thirty-two-1.0.2.tgz"
+  resolved "https://registry.yarnpkg.com/thirty-two/-/thirty-two-1.0.2.tgz#4ca2fffc02a51290d2744b9e3f557693ca6b627a"
   integrity sha512-OEI0IWCe+Dw46019YLl6V10Us5bi574EvlJEOcAkB29IzQ/mYD1A6RyNHLjZPiHCmuodxvgF6U+vZO1L15lxVA==
 
 through2@^4.0.0:
@@ -9320,7 +9284,7 @@ tslib@^1.8.1:
   resolved "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tslib@^2.0.3, tslib@^2.1.0:
+tslib@^2.0.3:
   version "2.5.2"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.5.2.tgz"
   integrity sha512-5svOrSA2w3iGFDs1HibEVBGbDrAY82bFQ3HZ3ixB+88nsbsWQoKqDRb5UBYAUPEzbBn6dAp5gRNXglySbx1MlA==
