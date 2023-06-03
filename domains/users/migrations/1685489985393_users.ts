@@ -13,7 +13,6 @@ export default class UsersSchema extends BaseSchema {
       table.string('email', 255).notNullable().unique()
       table.string('oauth_provider_id').nullable()
       table.string('oauth_provider_name').notNullable()
-      table.string('oauth_provider_name').notNullable()
       table.string('password').nullable()
       table.string('rememberMeToken').nullable()
       table.boolean('has_email_verified').notNullable().defaultTo(false)
