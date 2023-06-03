@@ -21,11 +21,6 @@ export default class AuthenticationController {
       return response.redirect().back()
     }
 
-    if (verifyUser.isTwoFactorEnabled) {
-      session.put('user_id', verifyUser.id)
-      return response.redirect().toRoute('2fa')
-    }
-
     const user = await auth.use('web').verifyCredentials(email, password)
     await auth.login(user)
 
