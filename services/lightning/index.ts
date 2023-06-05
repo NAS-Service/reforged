@@ -26,10 +26,18 @@ export default class Lightning implements LightningContract {
 
     domains.forEach((name: string) => {
       Object.entries(connections).forEach(([_, connection]: [string, any]) => {
-        const paths = 'paths' in connection['migrations'] ? connection['migrations']['paths'] : []
-        paths.push(this.app.makePath('domains', name, 'migrations'))
+        const migrations = 'paths' in connection['migrations'] ? connection['migrations']['paths'] : []
+        migrations.push(this.app.makePath('domains', name, 'migrations'))
 
-        connection['migrations']['paths'] = paths
+        if (!('seeders' in connection)) {
+          connection['seeders'] = { paths: [] }
+        }
+
+        const seeders = 'paths' in connection['seeders'] ? connection['seeders']['paths'] : []
+        seeders.push(this.app.makePath('domains', name, 'seeders'))
+
+        connection['migrations']['paths'] = migrations
+        connection['seeders']['paths'] = seeders
       })
     })
   }
