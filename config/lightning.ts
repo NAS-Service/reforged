@@ -4,7 +4,8 @@ const lightningConfig: LightningConfigContract = {
   domains: ['users', 'posts'],
   applications: {
     manager: {
-      middleware: [],
+      as: 'manager',
+      prefix: 'manager',
     },
     web: {
       middleware: [],
