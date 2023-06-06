@@ -215,6 +215,14 @@
     abstract-logging "^2.0.1"
     pino "^6.14.0"
 
+"@adonisjs/lucid-slugify@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@adonisjs/lucid-slugify/-/lucid-slugify-2.2.1.tgz#20a70cf6ddf3c8a27d88abdad1bdbd6634cd454a"
+  integrity sha512-l7FUVXbCYlDEAhv3skqOFVgGCXQKp7/NumEJscfxTpPbk6utmJzmxB1+aGYLHKpU4EAxcZMX6r41pdk7iR7dWg==
+  dependencies:
+    "@poppinss/utils" "^4.0.4"
+    nanoid "^3.3.4"
+
 "@adonisjs/lucid@^18.4.0":
   version "18.4.0"
   resolved "https://registry.npmjs.org/@adonisjs/lucid/-/lucid-18.4.0.tgz"
@@ -6956,7 +6964,7 @@ mz@^2.7.0:
     object-assign "^4.0.1"
     thenify-all "^1.0.0"
 
-nanoid@^3.3.6:
+nanoid@^3.3.4, nanoid@^3.3.6:
   version "3.3.6"
   resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.3.6.tgz"
   integrity sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==

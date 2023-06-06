@@ -46,7 +46,8 @@
       "@adonisjs/ally",
       "@adonisjs/mail",
       "@adonisjs/bouncer",
-      "adonis-responsive-attachment"
+      "adonis-responsive-attachment",
+      "@adonisjs/lucid-slugify"
     ]
   }
 }
