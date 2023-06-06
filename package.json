@@ -55,6 +55,7 @@
     "@adonisjs/shield": "^7.1.0",
     "@adonisjs/view": "^6.1.0",
     "@nas-service/eslint-config": "^1.1.0",
+    "adonis-responsive-attachment": "^1.5.10",
     "alpinejs": "^3.12.1",
     "luxon": "^3.3.0",
     "notp": "^2.0.3",
