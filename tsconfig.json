@@ -45,7 +45,8 @@
       "@adonisjs/auth",
       "@adonisjs/ally",
       "@adonisjs/mail",
-      "@adonisjs/bouncer"
+      "@adonisjs/bouncer",
+      "adonis-responsive-attachment"
     ]
   }
 }
