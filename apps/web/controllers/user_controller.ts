@@ -30,6 +30,6 @@ export default class UserController {
         .subject('Verif Email')
         .htmlView('web::views/mails/verify', { url: activeEmailLink })
     })
-    return response.redirect().toRoute('aa')
+    return response.redirect().toRoute('home')
   }
 }
