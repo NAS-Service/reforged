@@ -5,7 +5,8 @@
     "@adonisjs/core/build/commands/index.js",
     "@adonisjs/repl/build/commands",
     "@adonisjs/lucid/build/commands",
-    "@adonisjs/mail/build/commands"
+    "@adonisjs/mail/build/commands",
+    "@adonisjs/bouncer/build/commands"
   ],
   "exceptionHandlerNamespace": "App/Exceptions/Handler",
   "aliases": {
@@ -18,7 +19,8 @@
     "Domains": "domains"
   },
   "preloads": [
-    "./start/kernel"
+    "./start/kernel",
+    "./start/bouncer"
   ],
   "providers": [
     "./providers/app_provider",
@@ -31,7 +33,8 @@
     "@adonisjs/lucid",
     "@adonisjs/auth",
     "@adonisjs/ally",
-    "@adonisjs/mail"
+    "@adonisjs/mail",
+    "@adonisjs/bouncer"
   ],
   "metaFiles": [
     {

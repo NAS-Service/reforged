@@ -5,7 +5,7 @@ export default class UsersSchema extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.uuid('id').primary().defaultTo(this.db.rawQuery('uuid_generate_v4()').knexQuery)
+      table.string('id').primary().defaultTo(this.db.rawQuery('uuid_generate_v4()').knexQuery)
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at').notNullable()
       table.string('avatar_url', 255).nullable()
