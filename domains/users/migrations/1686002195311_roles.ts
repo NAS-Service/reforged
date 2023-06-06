@@ -8,6 +8,7 @@ export default class extends BaseSchema {
       table.string('id').primary().defaultTo(this.db.rawQuery('uuid_generate_v4()').knexQuery)
       table.string('label').notNullable()
       table.integer('power').notNullable()
+      table.string('color').nullable()
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })

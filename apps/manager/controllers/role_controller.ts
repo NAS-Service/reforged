@@ -1,5 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Role from 'Domains/users/models/role'
+import { StoreValidator } from 'apps/manager/validators/role_validator'
 
 export default class RolesController {
   public async index({ view }: HttpContextContract) {
@@ -13,7 +14,7 @@ export default class RolesController {
   }
 
   public async store({ request, response }: HttpContextContract) {
-    const data = await request.body()
+    const data = await request.validate(StoreValidator)
 
     const role = await Role.create(data)
     if (data.permissions) {
