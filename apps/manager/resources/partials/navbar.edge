@@ -1,3 +1,47 @@
-<div>
-  Sidebar
+@set('links', [
+  { icon: 'home', label: 'Accueil', baseUrl: '/manager', href: 'manager.home' },
+  { icon: 'users', label: 'Utilisateurs', group: '/manager/users', children: [
+    { label: 'Comptes', baseUrl: '', href: 'manager.home' },
+    { label: 'Permissions', baseUrl: '', href: 'manager.home' },
+    { label: 'Roles', baseUrl: '/manager/users/roles', href: 'manager.roles.index' }
+  ]}
+])
+
+<div class="bg-gradient-to-b from-gray-100 to-white h-full px-5 flex flex-col justify-between">
+  <div>
+    <div class="pt-5 pb-10 border-b border-gray-200">
+      <img src="https://via.placeholder.com/500x200" alt="logo">
+    </div>
+    <div class="py-5">
+      @each(link in links)
+        @if(!link.children)
+          @set('open', link.baseUrl == request.request.url)
+          <a href="{{ route(link.href) }}" class="flex items-center gap-x-3 py-2 {{ open ? 'text-cyan-500' : '' }}">
+            @!component(`manager::components/icons/${link.icon}`, { classes: 'w-5 h-5' })
+            <span class="">{{ link.label }}</span>
+          </a>
+        @else
+          @set('open', request.request.url.startsWith(link.group) ? 'open' : '')
+          <details {{ open }}>
+            <summary class="flex items-center gap-x-3 py-2 cursor-pointer">
+              @!component(`manager::components/icons/${link.icon}`, { classes: 'w-5 h-5' })
+              <span class="">{{ link.label }}</span>
+            </summary>
+            <div>
+              @each(child in link.children)
+                @set('open', request.request.url == child.baseUrl)
+                <a
+                  href="{{ route(child.href) }}"
+                  class="flex items-center gap-x-3 py-2 ml-5 px-3 py-1 {{ open ? 'text-cyan-500 bg-white border border-gray-200 rounded-lg shadow' : '' }}"
+                >
+                  {{ child.label }}
+                </a>
+              @end
+            </div>
+          </details>
+        @end
+      @end
+    </div>
+  </div>
+  <a href="{{ route('home') }}" class="block py-2 text-sm text-cyan-600 hover:text-cyan-700">Retour au site</a>
 </div>

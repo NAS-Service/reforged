@@ -11,10 +11,11 @@
   </head>
   <body>
     <div class="flex w-full">
-      <div class="fixed top-0 left-0 w-56 h-screen overflow-y-auto">
+      <div class="fixed top-0 left-0 w-56 h-screen overflow-y-auto border-r border-gray-100">
         @include('manager::partials/navbar')
       </div>
       <div class="ml-56">
+        @!section('body')
       </div>
     </div>
   </body>

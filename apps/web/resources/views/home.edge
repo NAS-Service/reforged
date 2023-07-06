@@ -1,11 +1,5 @@
-@layout('manager::layouts/default_layout')
+@layout('web::layouts/default_layout')
 
 @section('body')
-@if(auth.isLoggedIn)
-    @form.container({ method: 'POST', action: route('logout') + '?_method=delete' })
-      <button type="submit">Connexion</button>
-    @end
-@else
-Test
-@end
+Home page
 @end
