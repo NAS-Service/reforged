@@ -1,8 +1,7 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { next } from 'sucrase/dist/types/parser/tokenizer'
 
 export default class Guest {
-  public async handle({ auth, response }: HttpContextContract) {
+  public async handle({ auth, response }: HttpContextContract, next) {
     if (!auth.isGuest) {
       return response.redirect().toRoute('home')
     }
