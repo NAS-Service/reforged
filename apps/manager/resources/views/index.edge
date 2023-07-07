@@ -1,4 +1,26 @@
 @layout('manager::layouts/default_layout')
 
 @section('body')
+  @include('manager::partials/welcome_bar')
+
+  <div class="container py-5 grid grid-cols-3 gap-60">
+    <div class="relative col-span-2 bg-gradient-to-r from-cyan-900 via-cyan-700 to-white p-5 rounded-lg overflow-hidden shadow-xl">
+      <img src="https://img.freepik.com/photos-gratuite/nuage-blanc-ciel-bleu_74190-2381.jpg" class="absolute inset-0 w-full opacity-20" alt="" />
+      <div class="relative z-10">
+        <h1 class="text-2xl font-bold text-white">
+          Create and sell extraordinary products
+        </h1>
+        <p class="pt-2 pb-5 text-white/75 max-w-md">The world's first and largest handmade products marketplace.</p>
+        <div class="flex gap-5 py-5">
+          <a href="" class="bg-white text-cyan-600 px-3 py-2 rounded-lg">Explore More</a>
+          <a href="" class="text-white px-3 py-2 border border-white rounded-lg">Top Sellers</a>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="col-span-1 bg-blue-500 rounded-lg">
+
+      </div>
+    </div>
+  </div>
 @end
