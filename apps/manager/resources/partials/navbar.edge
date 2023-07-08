@@ -7,7 +7,7 @@
   ]}
 ])
 
-<div class="bg-gradient-to-b from-gray-100 to-white h-full px-5 flex flex-col justify-between">
+<div class="bg-gradient-to-b from-gray-100 to-white h-full px-3 flex flex-col justify-between">
   <div>
     <div class="pt-5 pb-10 border-b border-gray-200">
       <img src="https://via.placeholder.com/500x200" alt="logo">
@@ -16,14 +16,14 @@
       @each(link in links)
         @if(!link.children)
           @set('open', link.baseUrl == request.request.url)
-          <a href="{{ route(link.href) }}" class="flex items-center gap-x-3 py-2 {{ open ? 'text-cyan-500' : '' }}">
+          <a href="{{ route(link.href) }}" class="flex items-center gap-x-3 px-3 py-2 {{ open ? 'text-cyan-500 bg-white border border-gray-200 rounded-lg shadow' : '' }}">
             @!component(`manager::components/icons/${link.icon}`, { classes: 'w-5 h-5' })
             <span class="">{{ link.label }}</span>
           </a>
         @else
           @set('open', request.request.url.startsWith(link.group) ? 'open' : '')
           <details {{ open }}>
-            <summary class="flex items-center gap-x-3 py-2 cursor-pointer">
+            <summary class="flex items-center gap-x-3 px-3 py-2 cursor-pointer">
               @!component(`manager::components/icons/${link.icon}`, { classes: 'w-5 h-5' })
               <span class="">{{ link.label }}</span>
             </summary>
