@@ -17,7 +17,7 @@ export default class AuthenticationController {
     }
 
     if (verifyUser.oauthProviderName !== 'web') {
-      session.flash('message', 'troll')
+      session.flash('message', 'This user is not allowed to login with email and password')
       return response.redirect().back()
     }
 
