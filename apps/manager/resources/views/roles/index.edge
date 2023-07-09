@@ -1,5 +1,9 @@
 @layout('manager::layouts/default_layout')
 
 @section('body')
-  Roles
+  @!component('manager::components/ui/resource_bar', {
+    label: 'User roles',
+    description: 'Manage your user roles here',
+    resource_count: 20
+  })
 @end

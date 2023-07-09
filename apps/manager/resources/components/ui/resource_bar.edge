@@ -1,0 +1,39 @@
+<div class="container py-5 flex justify-between">
+  <div>
+    <h1 class="relative text-3xl font-bold break max-w-max">
+      {{ label }}
+
+      <span class="absolute top-0 -right-2 transform translate-x-full text-xs bg-cyan-500 py-0.5 px-1 rounded-md text-white">
+        {{ resource_count}}
+      </span>
+    </h1>
+    <p class="text-gray-500">{{ description }}</p>
+  </div>
+  <div>
+    @component('manager::components/ui/dropdown', { border: false })
+      @slot('button')
+        <span class="inline-block border-2 border-gray-50 rounded-full overflow-hidden" aria-label="avatar">
+          <img src="https://fancytailwind.com/static/profile10-9e05bd5638c669c34c11cb0462d95aa9.jpg" alt="" class="w-12 h-12" />
+        </span>
+      @end
+      @slot('actions')
+        <a href="#" class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
+          New Task
+        </a>
+
+        <a href="#" class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
+          Edit Task
+        </a>
+
+        @if(auth.isLoggedIn)
+          <form method="POST" action="{{ route('logout') }}?_method=DELETE">
+            {{ csrfField() }}
+            <button type="submit" class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
+              <span class="text-red-600">Delete Task</span>
+            </button>
+          </form>
+        @end
+      @end
+    @end
+  </div>
+</div>
