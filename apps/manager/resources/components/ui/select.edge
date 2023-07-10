@@ -1,0 +1,26 @@
+<div class="flex flex-col max-w-md">
+  @if(label)
+    <label for="{{ name }}">{{ label }}</label>
+  @end
+
+  <div class="border border-gray-200 rounded-lg max-w-min pr-3">
+    <select
+      id="{{ name }}"
+      name="{{ name }}"
+      class="py-1.5 px-3 rounded-lg focus:outline-none"
+      data-select
+
+      @if(multiple)
+        multiple
+      @end
+    >
+      {{{ await $slots.main() }}}
+    </select>
+  </div>
+
+  @if(flashMessages.has(`errors.${name}`))
+    <div class="bg-red-200 rounded-md mt-2 p-3 max-w-xl">
+      <p class="text-red-600 text-sm">{{ flashMessages.get(`errors.${name}`) }}</p>
+    </div>
+  @end
+</div>

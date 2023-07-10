@@ -1,0 +1,104 @@
+@set('searchParams', request.request._parsedUrl.query?.split('=')[1] || '')
+
+<div>
+  @component('manager::components/ui/form', {
+    method: 'GET',
+    action: route(endpoint + '.index'),
+    csrfField: false
+  })
+    <div class="grid grid-cols-7 gap-x-5">
+      <div class="col-span-2 flex items-center gap-x-2 border border-gray-200 rounded-lg overflow-hidden pl-2">
+        @!component('manager::components/icons/search', { classes: 'w-5 h-5 text-gray-500' })
+        <input type="text" name="search" placeholder="{{ messages.searchPlaceholder }}" value="{{ searchParams }}" autocomplete="off" class="py-1.5 px-3 focus:outline-none w-full">
+      </div>
+      @each(filter in filters)
+        <div class="col-span-1">
+          @component('manager::components/ui/select', { name: filter.uid })
+            <option value="">{{ filter.label }}</option>
+            @each(element in filter.data)
+              @set('label', filter.label + ' : ' + element.label)
+              <option value="{{ element.id }}">{{ label }}</option>
+            @end
+          @end
+        </div>
+      @end
+      <div class="col-span-1 flex items-center">
+        @!component('manager::components/ui/button', {
+          label: 'Search',
+          type: 'submit'
+        })
+      </div>
+    </div>
+  @end
+
+  <div class="py-10">
+    @if(payload.data.length)
+      <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+        <table class="min-w-full divide-y divide-gray-300">
+          <thead class="bg-gray-50">
+            <tr>
+              @each(column in columns)
+                @set('withPadding', columns.indexOf(column) === 0)
+                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 {{ withPadding ? 'sm:pl-6' : '' }}">{{ column.label }}</th>
+              @end
+              <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                <span class="sr-only">Edit</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200 bg-white">
+            @each(row in payload.data)
+              <tr>
+                @each(column in columns)
+                  @set('withPadding', columns.indexOf(column) === 0)
+                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 {{ withPadding ? 'sm:pl-6' : '' }}">{{ row[column.uid] }}</td>
+                @end
+                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, Lindsay Walton</span></a>
+                </td>
+              </tr>
+            @end
+          </tbody>
+        </table>
+      </div>
+      <nav class="flex items-center justify-between border-t border-gray-200 bg-white py-3" aria-label="Pagination">
+        <div class="hidden sm:block">
+          <p class="text-sm text-gray-700">
+            Page {{ payload.meta.current_page }} of {{ payload.meta.last_page }} results
+          </p>
+        </div>
+
+        <div class="flex flex-1 justify-between sm:justify-end gap-x-2">
+          @if(payload.meta.previous_page_url)
+            <a href="{{ data.meta.previous_page_url }}" class="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0">
+              Previous
+            </a>
+          @else
+            <button disabled class="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm text-gray-900 ring-1 ring-inset ring-gray-300 focus-visible:outline-offset-0 cursor-not-allowed">
+              Previous
+            </button>
+          @end
+
+          @if(payload.meta.next_page_url)
+            <a href="{{ data.meta.next_page_url }}" class="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0">
+              Next
+            </a>
+          @else
+            <button disabled class="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm text-gray-900 ring-1 ring-inset ring-gray-300 focus-visible:outline-offset-0 cursor-not-allowed">
+              Next
+            </button>
+          @end
+          </div>
+      </nav>
+    @else
+      <div class="sm:pl-6 max-w-5xl">
+        <a href="" class="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+          @!component('manager::components/icons/plus_circle', { classes: 'mx-auto h-8 w-8 text-gray-500' })
+          <span class="mt-2 block text-sm font-medium text-gray-900">
+            {{ messages.emptyPayload }}
+          </span>
+        </a>
+      </div>
+    @end
+  </div>
+</div>

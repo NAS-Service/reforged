@@ -1,8 +1,8 @@
 @set('links', [
   { icon: 'home', label: 'Accueil', baseUrl: '/manager', href: 'manager.home' },
   { icon: 'users', label: 'Utilisateurs', group: '/manager/users', children: [
-    { label: 'Comptes', baseUrl: '', href: 'manager.home' },
-    { label: 'Permissions', baseUrl: '', href: 'manager.home' },
+    { label: 'Comptes', baseUrl: '/manager/users/accounts', href: 'manager.home' },
+    { label: 'Permissions', baseUrl: '/manager/permissions', href: 'manager.home' },
     { label: 'Roles', baseUrl: '/manager/users/roles', href: 'manager.roles.index' }
   ]}
 ])
@@ -29,7 +29,7 @@
             </summary>
             <div>
               @each(child in link.children)
-                @set('open', request.request.url == child.baseUrl)
+                @set('open', request.request.url.includes(child.baseUrl))
                 <a
                   href="{{ route(child.href) }}"
                   class="flex items-center gap-x-3 py-2 ml-5 px-3 py-1 {{ open ? 'text-cyan-500 bg-white border border-gray-200 rounded-lg shadow' : '' }}"

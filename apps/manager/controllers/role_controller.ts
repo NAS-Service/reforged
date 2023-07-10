@@ -3,10 +3,18 @@ import Role from 'Domains/users/models/role'
 import { StoreValidator } from 'apps/manager/validators/role_validator'
 
 export default class RolesController {
-  public async index({ view }: HttpContextContract) {
-    const roles = await Role.query().preload('permissions').preload('users').first()
+  public async index({ request, view }: HttpContextContract) {
+    const page = request.input('page', 1)
+    const limit = request.input('limit', 2)
 
-    return view.render('manager::views/roles/index', { roles })
+    const search = request.input('search')
+    const roles = await Role.query()
+      .if(search, (query) => query.where('label', 'like', `%${search}%`))
+      .preload('permissions')
+      .preload('users')
+      .paginate(page, limit)
+
+    return view.render('manager::views/roles/index', { roles: roles.toJSON() })
   }
 
   public async create({ view }: HttpContextContract) {

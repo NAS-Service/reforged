@@ -4,6 +4,20 @@
   @!component('manager::components/ui/resource_bar', {
     label: 'User roles',
     description: 'Manage your user roles here',
-    resource_count: 20
+    resource_count: roles.data.length
   })
+
+  <div class="container">
+    @!component('manager::components/ui/table', {
+      endpoint: 'manager.roles',
+      payload: roles,
+      columns: [
+        { label: 'Label', uid: 'label' },
+      ],
+      messages: {
+        searchPlaceholder: 'Search roles',
+        emptyPayload: 'No roles found, create one ?',
+      }
+    })
+  </div>
 @end
