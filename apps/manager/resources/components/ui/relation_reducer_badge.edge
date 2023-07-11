@@ -1,0 +1,10 @@
+@set('data', $props.data ?? [])
+@set('reducer', $props.reducer)
+
+<div class="flex items-center gap-2">
+  @each(element in data)
+    <div class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-cyan-800 bg-cyan-200 rounded dark:bg-cyan-900 dark:text-cyan-300">
+      {{ element[reducer] }}
+    </div>
+  @end
+</div>

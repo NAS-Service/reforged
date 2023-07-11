@@ -1,4 +1,4 @@
-@set('searchParams', request.request._parsedUrl.query?.split('=')[1] || '')
+@set('params', httpParams(request))
 
 <div>
   @component('manager::components/ui/form', {
@@ -9,7 +9,14 @@
     <div class="grid grid-cols-7 gap-x-5">
       <div class="col-span-2 flex items-center gap-x-2 border border-gray-200 rounded-lg overflow-hidden pl-2">
         @!component('manager::components/icons/search', { classes: 'w-5 h-5 text-gray-500' })
-        <input type="text" name="search" placeholder="{{ messages.searchPlaceholder }}" value="{{ searchParams }}" autocomplete="off" class="py-1.5 px-3 focus:outline-none w-full">
+        <input
+          type="text"
+          name="search"
+          placeholder="{{ messages.searchPlaceholder }}"
+          value="{{ params.search }}"
+          autocomplete="off"
+          class="py-1.5 px-3 focus:outline-none w-full"
+        />
       </div>
       @each(filter in filters)
         <div class="col-span-1">
@@ -17,7 +24,8 @@
             <option value="">{{ filter.label }}</option>
             @each(element in filter.data)
               @set('label', filter.label + ' : ' + element.label)
-              <option value="{{ element.id }}">{{ label }}</option>
+              @set('selected', params[filter.uid] == element.id ? 'selected' : '')
+              <option value="{{ element.id }}" {{ selected }}>{{ label }}</option>
             @end
           @end
         </div>
@@ -51,10 +59,19 @@
               <tr>
                 @each(column in columns)
                   @set('withPadding', columns.indexOf(column) === 0)
-                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 {{ withPadding ? 'sm:pl-6' : '' }}">{{ row[column.uid] }}</td>
+                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 {{ withPadding ? 'sm:pl-6' : '' }}">
+                    @if(column.reducer)
+                      @!component('manager::components/ui/relation_reducer_badge', {
+                        data: row[column.uid],
+                        reducer: column.reducer
+                      })
+                    @else
+                      {{ row[column.uid] }}
+                    @end
+                  </td>
                 @end
                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, Lindsay Walton</span></a>
+                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                 </td>
               </tr>
             @end

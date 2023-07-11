@@ -20,7 +20,8 @@
   },
   "preloads": [
     "./start/kernel",
-    "./start/bouncer"
+    "./start/bouncer",
+    "./start/view"
   ],
   "providers": [
     "./providers/app_provider",
