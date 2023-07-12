@@ -21,11 +21,10 @@
       @each(filter in filters)
         <div class="col-span-1">
           @component('manager::components/ui/select', { name: filter.uid })
-            <option value="">{{ filter.label }}</option>
+            <option value="" class="text-gray-400">No {{ filter.label.toLowerCase() }}</option>
             @each(element in filter.data)
-              @set('label', filter.label + ' : ' + element.label)
               @set('selected', params[filter.uid] == element.id ? 'selected' : '')
-              <option value="{{ element.id }}" {{ selected }}>{{ label }}</option>
+              <option value="{{ element.id }}" {{ selected }}>{{ element.label }}</option>
             @end
           @end
         </div>
