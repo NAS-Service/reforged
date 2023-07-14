@@ -1,0 +1,41 @@
+@layout('manager::layouts/default_layout')
+
+@section('body')
+  @component('manager::components/ui/resource_bar', {
+    label: 'User accounts',
+    description: 'Manage your user accounts here',
+    resource_count: users.data.length,
+    breadcrumb: {
+      Manager: 'manager.home',
+      Users: 'manager.users.index',
+      Accounts: 'manager.users.accounts.index',
+    }
+  })
+    @slot('actions')
+      <a href="{{ route('manager.users.accounts.create') }}" class="btn btn-theme flex items-center gap-x-2">
+        @!component('manager::components/icons/plus_circle', { classes: 'w-5 h-5 text-white' })
+        <span>New user</span>
+      </a>
+    @end
+  @end
+
+  <div class="container-fluid">
+    <div class="bg-white rounded-2xl p-5">
+      @!component('manager::components/ui/table', {
+        endpoint: 'manager.users.accounts',
+        payload: users,
+        columns: [
+          { label: 'Username', uid: 'username' },
+          { label: 'Roles', uid: 'roles', reducer: 'label' },
+        ],
+        filters: [
+          { uid: 'role', label: 'Roles', data: roles },
+        ],
+        messages: {
+          searchPlaceholder: 'Search user',
+          emptyPayload: 'No user found, create one ?',
+        }
+      })
+    </div>
+  </div>
+@end

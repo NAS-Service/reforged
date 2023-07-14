@@ -1,39 +1,76 @@
-<div class="container py-5 flex justify-between">
+<div class="container-fluid flex justify-between w-full">
+  @!component('manager::components/ui/breadcrumb', {
+    items: breadcrumb
+  })
+
+  @component('manager::components/ui/dropdown', { border: false })
+    @slot('button')
+      <span class="inline-block border-2 border-gray-50 rounded-full overflow-hidden" aria-label="avatar">
+        <img src="https://fancytailwind.com/static/profile10-9e05bd5638c669c34c11cb0462d95aa9.jpg" alt="" class="w-8 h-8" />
+      </span>
+    @end
+    @slot('actions')
+      <a href="#" class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
+        New Task
+      </a>
+
+      <a href="#" class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
+        Edit Task
+      </a>
+
+      @if(auth.isLoggedIn)
+        <form method="POST" action="{{ route('logout') }}?_method=DELETE">
+          {{ csrfField() }}
+          <button type="submit" class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
+            <span class="text-red-600">Delete Task</span>
+          </button>
+        </form>
+      @end
+    @end
+  @end
+</div>
+
+<div class="container-fluid flex justify-between">
   <div>
-    <h1 class="relative text-3xl font-bold break max-w-max">
+    <h1 class="relative text-5xl font-medium break max-w-max">
       {{ label }}
 
-      <span class="absolute top-0 -right-2 transform translate-x-full flex items-center justify-center text-xs bg-cyan-500 h-5 min-w-[1.25rem] rounded-md text-white">
-        {{ resource_count}}
-      </span>
-    </h1>
-    <p class="text-gray-500">{{ description }}</p>
-  </div>
-  <div>
-    @component('manager::components/ui/dropdown', { border: false })
-      @slot('button')
-        <span class="inline-block border-2 border-gray-50 rounded-full overflow-hidden" aria-label="avatar">
-          <img src="https://fancytailwind.com/static/profile10-9e05bd5638c669c34c11cb0462d95aa9.jpg" alt="" class="w-12 h-12" />
+      @if(resource_count)
+        <span class="absolute top-0 -right-2 transform translate-x-full flex items-center justify-center text-xl bg-cyan-500 h-8 min-w-[2rem] rounded-lg text-white">
+          {{ resource_count}}
         </span>
       @end
-      @slot('actions')
-        <a href="#" class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
-          New Task
-        </a>
+    </h1>
+    <p class="text-gray-500 py-2">{{ description }}</p>
+  </div>
+</div>
 
-        <a href="#" class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
-          Edit Task
-        </a>
+<div class="container-fluid">
+  <div class="px-5 bg-white rounded-2xl flex justify-between">
+    <div class="flex gap-x-10">
+      @each(link in links)
+        @set('current', link.strict ? request.request.url === route.baseUrl : request.request.url.includes(link.baseUrl))
+        <div class="relative py-2">
+          <a href="{{ route(link.href) }}" class="inline-block py-2 text-sm font-medium text-gray-500 hover:text-gray-900 {{ current ? 'text-cyan-600' : '' }}">
+            {{ link.label }}
 
-        @if(auth.isLoggedIn)
-          <form method="POST" action="{{ route('logout') }}?_method=DELETE">
-            {{ csrfField() }}
-            <button type="submit" class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
-              <span class="text-red-600">Delete Task</span>
-            </button>
-          </form>
-        @end
+            @if(link.count)
+              <span class="ml-1 px-2 rounded-md {{ current ? 'bg-cyan-100 text-cyan-600' : 'bg-gray-100 text-gray-600' }}">
+                {{ link.count }}
+              </span>
+            @end
+          </a>
+
+          @if(current)
+            <div class="absolute bottom-0 left-0 w-full h-[0.3rem] bg-cyan-500 rounded-t-lg"></div>
+          @end
+        </div>
       @end
+    </div>
+    @if($slots.actions)
+      <div class="flex items-center">
+        {{{ await $slots.actions() }}}
+      </div>
     @end
   </div>
 </div>

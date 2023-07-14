@@ -14,7 +14,7 @@
       :aria-expanded="open"
       :aria-controls="$id('dropdown-button')"
       type="button"
-      class="flex items-center gap-2 bg-white px-5 py-2.5 {{ border && 'rounded-md shadow' }}"
+      class="flex items-center gap-2 px-5 py-2.5 {{ border && 'rounded-md shadow' }}"
     >
       {{{ await $slots.button() }}}
 

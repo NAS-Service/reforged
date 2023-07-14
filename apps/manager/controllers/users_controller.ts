@@ -23,7 +23,7 @@ export default class UsersController {
       .preload('roles', (query) => query.orderBy('power', 'desc'))
       .paginate(page, limit)
 
-    return view.render('manager::views/users/index', {
+    return view.render('manager::views/users/accounts/index', {
       roles: await Role.all(),
       users: users.toJSON(),
     })

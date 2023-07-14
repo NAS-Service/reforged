@@ -44,8 +44,7 @@ module.exports = {
       success: colors.green,
       warning: colors.amber,
       danger: colors.red,
-    }
+    },
   },
   plugins: [],
 }
-

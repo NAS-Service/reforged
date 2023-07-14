@@ -1,4 +1,30 @@
 @layout('manager::layouts/default_layout')
 
 @section('body')
+  @!component('manager::components/ui/resource_bar', {
+    label: 'User permissions',
+    description: 'Manage your user permissions here',
+    resource_count: permissions.data.length,
+    breadcrumb: {
+      Manager: 'manager.home',
+      Users: 'manager.users.index',
+      Permissions: 'manager.users.permissions.index',
+    }
+  })
+
+  <div class="container-fluid">
+    <div class="bg-white rounded-2xl p-5">
+      @!component('manager::components/ui/table', {
+        endpoint: 'manager.users.permissions',
+        payload: permissions,
+        columns: [
+          { label: 'Label', uid: 'label' },
+        ],
+        messages: {
+          searchPlaceholder: 'Search permission',
+          emptyPayload: 'No permissions found',
+        }
+      })
+    </div>
+  </div>
 @end

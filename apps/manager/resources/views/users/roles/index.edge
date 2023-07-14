@@ -4,20 +4,27 @@
   @!component('manager::components/ui/resource_bar', {
     label: 'User roles',
     description: 'Manage your user roles here',
-    resource_count: roles.data.length
+    resource_count: roles.data.length,
+    breadcrumb: {
+      Manager: 'manager.home',
+      Users: 'manager.users.index',
+      Roles: 'manager.users.roles.index',
+    }
   })
 
-  <div class="container">
-    @!component('manager::components/ui/table', {
-      endpoint: 'manager.users.roles',
-      payload: roles,
-      columns: [
-        { label: 'Label', uid: 'label' },
-      ],
-      messages: {
-        searchPlaceholder: 'Search roles',
-        emptyPayload: 'No roles found, create one ?',
-      }
-    })
+  <div class="container-fluid">
+    <div class="bg-white rounded-2xl p-5">
+      @!component('manager::components/ui/table', {
+        endpoint: 'manager.users.roles',
+        payload: roles,
+        columns: [
+          { label: 'Label', uid: 'label' },
+        ],
+        messages: {
+          searchPlaceholder: 'Search roles',
+          emptyPayload: 'No roles found, create one ?',
+        }
+      })
+    </div>
   </div>
 @end

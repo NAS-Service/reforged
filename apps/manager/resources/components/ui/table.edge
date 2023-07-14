@@ -7,7 +7,7 @@
     csrfField: false
   })
     <div class="grid grid-cols-7 gap-x-5">
-      <div class="col-span-2 flex items-center gap-x-2 border border-gray-200 rounded-lg overflow-hidden pl-2">
+      <div up-watch="console.log(`New value of ${name} is ${value}`)" class="col-span-2 flex items-center gap-x-2 border border-gray-200 rounded-lg overflow-hidden pl-2">
         @!component('manager::components/icons/search', { classes: 'w-5 h-5 text-gray-500' })
         <input
           type="text"
@@ -31,6 +31,7 @@
       @end
       <div class="col-span-1 flex items-center">
         @!component('manager::components/ui/button', {
+          icon: 'search',
           label: 'Search',
           type: 'submit'
         })
@@ -40,13 +41,13 @@
 
   <div class="py-10">
     @if(payload.data.length)
-      <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+      <div class="overflow-x-auto sm:rounded-lg">
         <table class="min-w-full divide-y divide-gray-300">
-          <thead class="bg-gray-50">
+          <thead>
             <tr>
               @each(column in columns)
                 @set('withPadding', columns.indexOf(column) === 0)
-                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 {{ withPadding ? 'sm:pl-6' : '' }}">{{ column.label }}</th>
+                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 overflow-x-auto w-[24rem] {{ withPadding ? 'sm:pl-6' : '' }}">{{ column.label }}</th>
               @end
               <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
                 <span class="sr-only">Edit</span>
@@ -58,7 +59,7 @@
               <tr>
                 @each(column in columns)
                   @set('withPadding', columns.indexOf(column) === 0)
-                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 {{ withPadding ? 'sm:pl-6' : '' }}">
+                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 overflow-x-auto w-[24rem]  {{ withPadding ? 'sm:pl-6' : '' }}">
                     @if(column.reducer)
                       @!component('manager::components/ui/relation_reducer_badge', {
                         data: row[column.uid],

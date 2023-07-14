@@ -14,7 +14,7 @@ export default class RolesController {
       .preload('users')
       .paginate(page, limit)
 
-    return view.render('manager::views/roles/index', { roles: roles.toJSON() })
+    return view.render('manager::views/users/roles/index', { roles: roles.toJSON() })
   }
 
   public async create({ view }: HttpContextContract) {

@@ -2,26 +2,11 @@
 
 @section('body')
   @!component('manager::components/ui/resource_bar', {
-    label: 'User accounts',
-    description: 'Manage your user accounts here',
-    resource_count: users.data.length
+    label: 'User dashboard',
+    description: 'Manage your platform users',
+    breadcrumb: {
+      Manager: 'manager.home',
+      Users: 'manager.users.index'
+    }
   })
-
-  <div class="container">
-    @!component('manager::components/ui/table', {
-      endpoint: 'manager.accounts',
-      payload: users,
-      columns: [
-        { label: 'Username', uid: 'username' },
-        { label: 'Roles', uid: 'roles', reducer: 'label' },
-      ],
-      filters: [
-        { uid: 'role', label: 'Roles', data: roles },
-      ],
-      messages: {
-        searchPlaceholder: 'Search user',
-        emptyPayload: 'No user found, create one ?',
-      }
-    })
-  </div>
 @end

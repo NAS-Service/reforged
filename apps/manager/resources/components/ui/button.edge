@@ -1,5 +1,9 @@
 @set('type', $props.type ?? 'button')
 
-<button type="{{ type }}" class="px-3 py-1 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg">
-  {{ label }}
+<button type="{{ type }}" class="btn btn-theme flex items-center gap-x-2">
+  @if(icon)
+    @!component(`manager::components/icons/${icon}`, { classes: 'w-5 h-5 text-white' })
+  @end
+
+  <span>{{ label }}</span>
 </button>
