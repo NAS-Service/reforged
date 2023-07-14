@@ -1,3 +1,12 @@
+@set('links', [
+  { icon: 'home', label: 'Accueil', baseUrl: '/manager', strict: true, href: 'manager.home' },
+  { icon: 'users', label: 'Utilisateurs', baseUrl: '/manager/users', href: 'manager.users.index', children: [
+//     { label: 'Comptes', baseUrl: '/manager/users/accounts', href: 'manager.users.accounts.index' },
+//     { label: 'Permissions', baseUrl: '/manager/permissions', href: 'manager.home' },
+//     { label: 'Roles', baseUrl: '/manager/users/roles', href: 'manager.users.roles.index' }
+  ]}
+])
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,10 +20,10 @@
   </head>
   <body>
     <div class="flex w-full">
-      <div class="fixed top-0 left-0 w-56 h-screen overflow-y-auto border-r border-gray-100">
+      <div class="fixed top-0 left-0 w-16 h-screen overflow-y-auto border-r border-gray-100">
         @include('manager::partials/navbar')
       </div>
-      <div class="ml-56 w-full min-h-screen">
+      <div class="ml-16 w-full min-h-screen bg-gray-100">
         @!section('body')
       </div>
     </div>
