@@ -36,6 +36,23 @@ export default class RolesController {
     return response.redirect().toRoute('manager.users.roles.index')
   }
 
+  public async edit({ view, params }: HttpContextContract) {
+    const role = await Role.findOrFail(params.id)
+    return view.render('manager::views/users/roles/edit', { role })
+  }
+
+  public async update({ request, response, params }: HttpContextContract) {
+    const role = await Role.findOrFail(params.id)
+    const data = await request.validate(StoreValidator)
+
+    await role.merge(data).save()
+
+    if (data.permissions) {
+      await role.related('permissions').sync(data.permissions)
+    }
+    return response.redirect().toRoute('manager.users.roles.index')
+  }
+
   public async destroy({ response, params }: HttpContextContract) {
     const role = await Role.findOrFail(params.id)
     await role.delete()

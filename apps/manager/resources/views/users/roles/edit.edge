@@ -1,0 +1,48 @@
+@layout('manager::layouts/default_layout')
+
+@section('body')
+  @!component('manager::components/ui/resource_bar', {
+    label: 'User roles',
+    description: 'Manage your user roles here',
+    breadcrumb: {
+      Manager: route('manager.home'),
+      Users: route('manager.users.index'),
+      Roles: route('manager.users.roles.index'),
+      [role.label]: route('manager.users.roles.edit', [role.id]),
+    }
+  })
+
+  @component('manager::components/ui/form', {
+    method: 'POST',
+    action: route('manager.users.roles.update', [role.id]) + '?_method=PUT',
+  })
+    <div class="container-fluid">
+      <div class="grid grid-cols-3 gap-5">
+        <div class="bg-white p-5 rounded-2xl col-span-1">
+          @!component('components/form/input', {
+            label: 'Display label',
+            name: 'label',
+            type: 'text',
+            value: role.label
+          })
+
+          @!component('components/form/input', {
+            label: 'Level',
+            name: 'power',
+            type: 'number',
+            value: role.power
+          })
+        </div>
+        <div class="bg-white p-5 rounded-2xl col-span-2">
+          <h2 class="block text-sm font-medium leading-6 text-gray-900">Permissions</h2>
+        </div>
+      </div>
+      <div class="py-5 max-w-min">
+        @!component('components/form/button', {
+          label: 'Update',
+          type: 'submit'
+        })
+      </div>
+    </div>
+  @end
+@end

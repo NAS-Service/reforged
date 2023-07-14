@@ -13,6 +13,7 @@ export default () => {
       Route.get('/create', 'users_controller.create').as('create')
       Route.get('/:id', 'users_controller.show').as('show')
       Route.post('/', 'users_controller.store').as('store')
+      Route.get('/:id/edit', 'users_controller.edit').as('edit')
       Route.delete('/:id', 'users_controller.destroy').as('destroy')
     }).prefix('accounts').as('accounts')
 
@@ -21,6 +22,8 @@ export default () => {
       Route.get('/create', 'role_controller.create').as('create')
       Route.get('/:id', 'role_controller.show').as('show')
       Route.post('/', 'role_controller.store').as('store')
+      Route.get('/:id/edit', 'role_controller.edit').as('edit')
+      Route.put('/:id', 'role_controller.update').as('update')
       Route.delete('/:id', 'role_controller.destroy').as('destroy')
     }).prefix('roles').as('roles')
 
