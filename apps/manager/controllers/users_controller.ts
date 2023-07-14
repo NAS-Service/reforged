@@ -5,7 +5,7 @@ import User from 'Domains/users/models/User'
 export default class UsersController {
   public async index({ request, view }: HttpContextContract) {
     const page = request.input('page', 1)
-    const limit = request.input('limit', 2)
+    const limit = request.input('limit', 10)
 
     const search = request.input('search')
     const roleId = request.input('role')
