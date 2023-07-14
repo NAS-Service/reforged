@@ -7,18 +7,20 @@ export default () => {
   Route.get('/', 'app_controller.index').as('home')
   Route.group(() => {
     Route.get('/', 'app_controller.users').as('index')
+
     Route.group(() => {
       Route.get('/', 'users_controller.index').as('index')
-      Route.get('/:id', 'users_controller.show').as('show')
       Route.get('/create', 'users_controller.create').as('create')
+      Route.get('/:id', 'users_controller.show').as('show')
       Route.post('/', 'users_controller.store').as('store')
       Route.delete('/:id', 'users_controller.destroy').as('destroy')
     }).prefix('accounts').as('accounts')
 
     Route.group(() => {
       Route.get('/', 'role_controller.index').as('index')
+      Route.get('/create', 'role_controller.create').as('create')
       Route.get('/:id', 'role_controller.show').as('show')
-      Route.post('/create', 'role_controller.store').as('store')
+      Route.post('/', 'role_controller.store').as('store')
       Route.delete('/:id', 'role_controller.destroy').as('destroy')
     }).prefix('roles').as('roles')
 

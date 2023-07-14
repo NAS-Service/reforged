@@ -31,13 +31,13 @@ export default class UsersController {
 
   public async show({ view, params }: HttpContextContract) {
     const role = Role.query().where('id', params.id).preload('permissions').preload('users').first()
-    return view.render('manager::views/roles/show', { role })
+    return view.render('manager::views/users/accounts/show', { role })
   }
 
   public async destroy({ response, params }: HttpContextContract) {
     const role = await Role.findOrFail(params.id)
     await role.delete()
 
-    return response.redirect().toRoute('manager.roles.index')
+    return response.redirect().toRoute('manager.users.accounts.index')
   }
 }

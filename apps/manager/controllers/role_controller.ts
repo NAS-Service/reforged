@@ -17,8 +17,13 @@ export default class RolesController {
     return view.render('manager::views/users/roles/index', { roles: roles.toJSON() })
   }
 
+  public async show({ view, params }: HttpContextContract) {
+    const role = Role.query().where('id', params.id).preload('permissions').preload('users').first()
+    return view.render('manager::views/users/roles/show', { role })
+  }
+
   public async create({ view }: HttpContextContract) {
-    return view.render('manager::views/roles/create')
+    return view.render('manager::views/users/roles/create')
   }
 
   public async store({ request, response }: HttpContextContract) {
@@ -29,11 +34,6 @@ export default class RolesController {
       await role.related('permissions').sync(data.permissions)
     }
     return response.redirect().toRoute('manager.roles.index')
-  }
-
-  public async show({ view, params }: HttpContextContract) {
-    const role = Role.query().where('id', params.id).preload('permissions').preload('users').first()
-    return view.render('manager::views/roles/show', { role })
   }
 
   public async destroy({ response, params }: HttpContextContract) {
