@@ -33,7 +33,7 @@ export default class RolesController {
     if (data.permissions) {
       await role.related('permissions').sync(data.permissions)
     }
-    return response.redirect().toRoute('manager.roles.index')
+    return response.redirect().toRoute('manager.users.roles.index')
   }
 
   public async destroy({ response, params }: HttpContextContract) {

@@ -1,5 +1,46 @@
 @layout('manager::layouts/default_layout')
 
 @section('body')
-fff
+  @!component('manager::components/ui/resource_bar', {
+    label: 'User roles',
+    description: 'Manage your user roles here',
+    breadcrumb: {
+      Manager: 'manager.home',
+      Users: 'manager.users.index',
+      Roles: 'manager.users.roles.index',
+      Create: 'manager.users.roles.create',
+    }
+  })
+
+  @component('manager::components/ui/form', {
+    method: 'POST',
+    action: route('manager.users.roles.store'),
+  })
+    <div class="container-fluid">
+      <div class="grid grid-cols-3 gap-5">
+        <div class="bg-white p-5 rounded-2xl col-span-1">
+          @!component('components/form/input', {
+            label: 'Display label',
+            name: 'label',
+            type: 'text',
+          })
+
+          @!component('components/form/input', {
+            label: 'Level',
+            name: 'power',
+            type: 'number'
+          })
+        </div>
+        <div class="bg-white p-5 rounded-2xl col-span-2">
+          <h2 class="block text-sm font-medium leading-6 text-gray-900">Permissions</h2>
+        </div>
+      </div>
+      <div class="py-5 max-w-min">
+        @!component('components/form/button', {
+          label: 'Create',
+          type: 'submit'
+        })
+      </div>
+    </div>
+  @end
 @end

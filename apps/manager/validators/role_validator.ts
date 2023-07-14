@@ -11,7 +11,7 @@ export class StoreValidator {
         column: 'label',
       }),
     ]),
-    power: schema.number.optional(),
+    power: schema.number([rules.unsigned()]),
     color: schema.string.optional({ trim: true }),
     permissions: schema.array.optional().members(
       schema.string({ trim: true }, [
