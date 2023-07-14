@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="px-5 bg-white rounded-2xl flex justify-between">
+    <div class="flex gap-x-10">
+      @each(link in links)
+        @set('current', link.strict ? request.request.url === route.baseUrl : request.request.url.includes(link.baseUrl))
+        <div class="relative py-2">
+          <a href="{{ route(link.href) }}" class="inline-block py-2 text-sm font-medium text-gray-500 hover:text-gray-900 {{ current ? 'text-cyan-600' : '' }}">
+            {{ link.label }}
+
+            @if(link.count)
+              <span class="ml-1 px-2 rounded-md {{ current ? 'bg-cyan-100 text-cyan-600' : 'bg-gray-100 text-gray-600' }}">
+                {{ link.count }}
+              </span>
+            @end
+          </a>
+
+          @if(current)
+            <div class="absolute bottom-0 left-0 w-full h-[0.3rem] bg-cyan-500 rounded-t-lg"></div>
+          @end
+        </div>
+      @end
+    </div>
+    <div class="flex items-center">
+      {{{ await $slots.main() }}}
+    </div>
+  </div>
+</div>

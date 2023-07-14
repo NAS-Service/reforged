@@ -12,6 +12,13 @@
     }
   })
 
+  @component('manager::components/ui/resource_navigation')
+    <a href="{{ route('manager.users.accounts.create') }}" class="btn btn-theme flex items-center gap-x-2">
+      @!component('manager::components/icons/plus_circle', { classes: 'w-5 h-5 text-white' })
+      <span>New role</span>
+    </a>
+  @end
+
   <div class="container-fluid">
     <div class="bg-white rounded-2xl p-5">
       @!component('manager::components/ui/table', {

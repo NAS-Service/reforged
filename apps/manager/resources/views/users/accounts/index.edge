@@ -1,7 +1,7 @@
 @layout('manager::layouts/default_layout')
 
 @section('body')
-  @component('manager::components/ui/resource_bar', {
+  @!component('manager::components/ui/resource_bar', {
     label: 'User accounts',
     description: 'Manage your user accounts here',
     resource_count: users.data.length,
@@ -11,12 +11,12 @@
       Accounts: 'manager.users.accounts.index',
     }
   })
-    @slot('actions')
-      <a href="{{ route('manager.users.accounts.create') }}" class="btn btn-theme flex items-center gap-x-2">
-        @!component('manager::components/icons/plus_circle', { classes: 'w-5 h-5 text-white' })
-        <span>New user</span>
-      </a>
-    @end
+
+  @component('manager::components/ui/resource_navigation')
+    <a href="{{ route('manager.users.accounts.create') }}" class="btn btn-theme flex items-center gap-x-2">
+      @!component('manager::components/icons/plus_circle', { classes: 'w-5 h-5 text-white' })
+      <span>New user</span>
+    </a>
   @end
 
   <div class="container-fluid">
