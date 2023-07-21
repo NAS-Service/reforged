@@ -56,6 +56,8 @@
     "@adonisjs/view": "^6.1.0",
     "@nas-service/eslint-config": "^1.1.0",
     "alpinejs": "^3.12.1",
+    "axios": "^1.4.0",
+    "gravatar": "^1.8.2",
     "luxon": "^3.3.0",
     "notp": "^2.0.3",
     "pg": "^8.11.0",
@@ -87,6 +89,12 @@
       "indent": [
         "error",
         2
+      ],
+      "prefer-const": [
+        "error",
+        {
+          "destructuring": "all"
+        }
       ]
     }
   },
