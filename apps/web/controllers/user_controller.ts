@@ -16,7 +16,6 @@ export default class UserController {
     const user = await User.create({
       username: data.firstname,
       email: data.email,
-      oauthProviderName: 'web',
       password: data.password,
     })
 
