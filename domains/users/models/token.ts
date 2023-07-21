@@ -102,7 +102,6 @@ export default class Token extends BaseModel {
       .where('expiresAt', '>', DateTime.now().toSQL())
       .where('token', token)
       .first()
-
     return !!record
   }
 }

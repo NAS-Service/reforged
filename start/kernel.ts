@@ -45,4 +45,5 @@ Server.middleware.register([
 Server.middleware.registerNamed({
   guest: () => import('apps/web/middleware/guest'),
   auth: () => import('apps/web/middleware/auth'),
+  turnstile: () => import('apps/web/middleware/turnstile'),
 })

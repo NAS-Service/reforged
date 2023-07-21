@@ -1,18 +1,21 @@
+import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { slugify } from '@ioc:Adonis/Addons/LucidSlugify'
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasMany, HasMany, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
-import Token from 'Domains/users/models/token'
-import Role from 'Domains/users/models/role'
-import Permission from 'Domains/users/models/permission'
+import { computed } from '@adonisjs/lucid/build/src/Orm/Decorators'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
   public id: string
 
-  @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
+  @column()
+  public roleId: number
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
+  @column()
+  @slugify({ strategy: 'dbIncrement', fields: ['username'] })
+  public username: string
+
+  @column()
+  public rememberMeToken: string | null
 
   @column()
   public email: string
@@ -21,39 +24,39 @@ export default class User extends BaseModel {
   public password: string
 
   @column()
-  public rememberMeToken: string | null
-
-  @column()
-  public username: string
-
-  @column()
   public avatarUrl: string
 
-  @column({ serializeAs: null })
-  public oauthProviderId: string
-
-  @column({ serializeAs: null })
-  public oauthProviderName: string
+  @column()
+  public providerId: string
 
   @column()
-  public hasEmailVerified: boolean
+  public providerEmail: string
 
-  @hasMany(() => Token)
-  public tokens: HasMany<typeof Token>
+  @column()
+  public providerAccessToken: string
 
-  @hasMany(() => Token, {
-    onQuery: (query) => query.where('type', 'PASSWORD_RESET'),
-  })
-  public passwordResetTokens: HasMany<typeof Token>
+  @column()
+  public emailVerified: string | null
 
-  @hasMany(() => Token, {
-    onQuery: (query) => query.where('type', 'VERIFY_EMAIL'),
-  })
-  public verifyEmailTokens: HasMany<typeof Token>
+  @column.dateTime()
+  public emailVerifiedAt: DateTime | null
 
-  @manyToMany(() => Permission)
-  public permissions: ManyToMany<typeof Permission>
+  @column.dateTime({ autoCreate: true })
+  public createdAt: DateTime
 
-  @manyToMany(() => Role)
-  public roles: ManyToMany<typeof Role>
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  public updatedAt: DateTime
+
+  @computed()
+  public get avatar() {
+    if (this.avatarUrl) {
+      if (this.avatarUrl.startsWith('https://')) {
+        return this.avatarUrl
+      }
+
+      return `/img/${this.avatarUrl}`
+    }
+
+    return gravatar.url(this.email, { s: '40' })
+  }
 }
